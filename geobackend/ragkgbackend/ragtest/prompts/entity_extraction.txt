@@ -1,0 +1,106 @@
+
+-Goal-
+Given a text document that is potentially relevant to this activity, first identify all entities needed from the text in order to capture the information and ideas in the text.
+Next, report all relationships among the identified entities.
+
+-Steps-
+1. Identify all entities. For each identified entity, extract the following information:
+- entity_name: Name of the entity, capitalized
+- entity_type: Suggest several labels or categories for the entity. The categories should not be specific, but should be as general as possible.
+- entity_description: Comprehensive description of the entity's attributes and activities
+Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+
+2. From the entities identified in step 1, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
+For each pair of related entities, extract the following information:
+- source_entity: name of the source entity, as identified in step 1
+- target_entity: name of the target entity, as identified in step 1
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_strength: a numeric score indicating strength of the relationship between the source entity and target entity
+Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Return output in Chinese as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
+
+4. If you have to translate into Chinese, just translate the descriptions, nothing else!
+
+5. When finished, output {completion_delimiter}.
+
+-Examples-
+######################
+
+Example 1:
+
+text:
+地质模式是油气储层地质学和油气藏描述和表征相关学科知识的高度抽象和规律性认识。地质模式主题，旨在以河流沉积学、储层地质学、地层学等相关学科为指导，分层次描述刻画河流相储层的沉积构型特征、岩石相特征、物性特征等，并归纳总结相关定性和定量地质模式，其中涉及的概念众多，且语义关系错综复杂。这里重点从沉积构型角度梳理相关概念，划分的专题包括时空格架、沉积相与沉积体系、构型特征、岩相特征和物性特征5个。其中沉积构型及其模式是该主题的核心内容，相关知识点见“201沉积构型模式”。
+------------------------
+output:
+("entity"{tuple_delimiter}地质模式{tuple_delimiter}规律性认识{tuple_delimiter}地质模式是油气储层地质学和油气藏描述和表征相关学科知识的高度抽象和规律性认识。)
+{record_delimiter}
+("entity"{tuple_delimiter}时空格架{tuple_delimiter}地质模式专题{tuple_delimiter}时空格架是地质模式的专题之一。)
+{record_delimiter}
+("entity"{tuple_delimiter}积相与沉积体系{tuple_delimiter}地质模式专题{tuple_delimiter}积相与沉积体系是地质模式的专题之一。)
+{record_delimiter}
+("entity"{tuple_delimiter}构型特征{tuple_delimiter}地质模式专题{tuple_delimiter}构型特征是地质模式的专题之一。)
+{record_delimiter}
+("entity"{tuple_delimiter}储层地质学{tuple_delimiter}学科领域{tuple_delimiter}储层地质学为地质模式的构建提供科学的理论指导。)
+{record_delimiter}
+("relationship"{tuple_delimiter}地质模式{tuple_delimiter}时空格架{tuple_delimiter}地质模式包含了时空格架，时空格架是地质模式的特征和专题之一。{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}积相与沉积体系{tuple_delimiter}时空格架{tuple_delimiter}积相与沉积体系和时空格架用于描述地质模式的特征。{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}储层地质学{tuple_delimiter}地质模式{tuple_delimiter}储层地质学与地质模式有关系，地质模式是从储层地质学中提炼出来的。{tuple_delimiter}7)
+{completion_delimiter}
+#############################
+
+
+Example 2:
+
+text:
+研究中，主要针对河流沉积体系中的砂体描述其连通性，通常有以下几种形式（图3-134）,即单边式或多边式（侧向上相互连通为主）、多层式（或称叠加式，垂向上以相互连通为主）、孤立式（未与其他砂体连通）。
+
+
+
+
+层间隔层
+1）概念定义
+层间隔层简称隔层（interlayer space），是指分隔垂向上不同砂体的非渗透层，如泥岩、粉砂质泥岩、膏岩等，其�
+------------------------
+output:
+("entity"{tuple_delimiter}河流沉积体系{tuple_delimiter}地质系统{tuple_delimiter}河流沉积体系是指河流及其沉积物的系统，主要研究砂体的连通性)
+{record_delimiter}
+("entity"{tuple_delimiter}砂体{tuple_delimiter}地质特征{tuple_delimiter}砂体是河流沉积体系中的重要组成部分，具有不同的连通性形式)
+{record_delimiter}
+("entity"{tuple_delimiter}连通性{tuple_delimiter}概念{tuple_delimiter}连通性是指砂体之间的相互连接程度，影响沉积物的流动和分布)
+{record_delimiter}
+("entity"{tuple_delimiter}单边式{tuple_delimiter}连通性形式{tuple_delimiter}单边式是指砂体在侧向上主要相互连通的一种形式)
+{record_delimiter}
+("entity"{tuple_delimiter}多边式{tuple_delimiter}连通性形式{tuple_delimiter}多边式是指砂体在侧向上相互连通的多种形式)
+{record_delimiter}
+("entity"{tuple_delimiter}多层式{tuple_delimiter}连通性形式{tuple_delimiter}多层式或称叠加式是指砂体在垂向上相互连通的一种形式)
+{record_delimiter}
+("entity"{tuple_delimiter}孤立式{tuple_delimiter}连通性形式{tuple_delimiter}孤立式是指未与其他砂体连通的砂体形式)
+{record_delimiter}
+("entity"{tuple_delimiter}层间隔层{tuple_delimiter}构型特征{tuple_delimiter}层间隔层是地质模式划分中构型特征专题的一部分，地质模式划分的5个专题包括时空格架、沉积相与沉积体系、构型特征、岩相特征和物性特征。)
+{record_delimiter}
+("relationship"{tuple_delimiter}河流沉积体系{tuple_delimiter}砂体{tuple_delimiter}河流沉积体系中包含砂体，砂体是其重要组成部分{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}砂体{tuple_delimiter}连通性{tuple_delimiter}砂体的连通性影响其在河流沉积体系中的分布和流动{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}砂体{tuple_delimiter}单边式{tuple_delimiter}单边式是砂体的一种连通性形式，描述其侧向连通性{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}砂体{tuple_delimiter}多边式{tuple_delimiter}多边式是砂体的一种连通性形式，描述其多种侧向连通性{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}砂体{tuple_delimiter}多层式{tuple_delimiter}多层式是砂体的一种连通性形式，描述其垂向连通性{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}砂体{tuple_delimiter}孤立式{tuple_delimiter}孤立式是砂体的一种连通性形式，描述其未与其他砂体连通的状态{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}层间隔层{tuple_delimiter}砂体{tuple_delimiter}层间隔层分隔不同砂体，影响其连通性{tuple_delimiter}5)
+{completion_delimiter}
+#############################
+
+
+
+-Real Data-
+######################
+text: {input_text}
+######################
+output:
