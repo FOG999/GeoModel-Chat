@@ -1,4 +1,4 @@
-# Geo Model Chat: A Knowledge-based Q&A System for Reservoir Geological Modeling
+# Geo Model Chat: A Knowledge-based Q&A System for Petroleum Reservoir Geological Modeling Based on Large Language Models
 
 **Authors:**  
 Nie Zijun, Li Jieyu  
