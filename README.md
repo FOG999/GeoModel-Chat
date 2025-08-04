@@ -75,7 +75,7 @@ See /geobackend/README.md for detailed setup instructions.
 ## 🗂️ Dataset & Knowledge Graph
 
 - **Expert-grade Dataset**:  
-  4300+ curated papers (CNKI, top journals) on reservoir geological modeling.
+  4300+ curated papers (CNKI) on reservoir geological modeling.
 
 - **Automated KG Extraction**:
   - **Entities**: Geological terms (e.g., facies, porosity), regions (e.g., Ordos Basin), technical methods (e.g., sedimentation modeling)
@@ -116,7 +116,6 @@ See /geobackend/README.md for detailed setup instructions.
 ## 👨‍💻 Applications
 - **Scientific research and education in petroleum geology**
 - **Digital oilfield, reservoir modeling, specialized Q&A services**
-- **Easily extensible to medicine, audit, chemistry and other high-complexity knowledge domains**
 
 
 
